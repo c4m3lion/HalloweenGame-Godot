@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/coin.gd" id="1_mp6xr"]
 [ext_resource type="Texture2D" uid="uid://bll5muswvb2xk" path="res://assets/sprites/coin.png" id="1_qkhg7"]
-[ext_resource type="AudioStream" uid="uid://v7363vuepk1l" path="res://assets/sounds/coin.wav" id="3_waiua"]
+[ext_resource type="AudioStream" uid="uid://v7363vuepk1l" path="res://assets/sounds/candy-pickup.wav" id="3_waiua"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pohre"]
 atlas = ExtResource("1_qkhg7")
