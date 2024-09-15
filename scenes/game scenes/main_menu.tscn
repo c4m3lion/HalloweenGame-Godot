@@ -1,0 +1,142 @@
+[gd_scene load_steps=20 format=3 uid="uid://ciiesxjiiq3nh"]
+
+[ext_resource type="Texture2D" uid="uid://cs37iq630lylb" path="res://assets/sprites/UI Pixels/Yellow/Sprites/Sprite-0001.png" id="1_3qlwv"]
+[ext_resource type="FontFile" uid="uid://7ljrdnlb1xl1" path="res://assets/fonts/PixelOperator8.ttf" id="2_pnhj5"]
+[ext_resource type="Script" path="res://scripts/main_menu.gd" id="3_n5158"]
+[ext_resource type="Texture2D" uid="uid://besnsffepfhs4" path="res://assets/sprites/UI Pixels/Blue/Sprites/Sprite-0001.png" id="3_w4o8f"]
+[ext_resource type="Texture2D" uid="uid://cdo15dp64d6hi" path="res://assets/sprites/UI Pixels/Red/Sprites/Sprite-0001.png" id="4_tkyje"]
+[ext_resource type="PackedScene" uid="uid://bv77trrthogcn" path="res://scenes/characters/parallax_background.tscn" id="5_7w6p1"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_i6wv1"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rd5pm"]
+texture = ExtResource("1_3qlwv")
+texture_margin_left = 12.0
+texture_margin_top = 10.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+expand_margin_left = 1.0
+expand_margin_top = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 1.0
+region_rect = Rect2(32, 0, 16, 16)
+
+[sub_resource type="Theme" id="Theme_fux5u"]
+default_font = ExtResource("2_pnhj5")
+Button/styles/disabled = SubResource("StyleBoxTexture_i6wv1")
+Button/styles/focus = null
+Button/styles/hover = null
+Button/styles/normal = SubResource("StyleBoxTexture_rd5pm")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_is60u"]
+texture = ExtResource("3_w4o8f")
+region_rect = Rect2(16, 16, 16, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6ipq0"]
+texture = ExtResource("4_tkyje")
+region_rect = Rect2(16, 16, 16, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4f421"]
+texture = ExtResource("1_3qlwv")
+region_rect = Rect2(16, 16, 16, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ccv3l"]
+texture = ExtResource("3_w4o8f")
+region_rect = Rect2(48, 48, 16, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_msrgg"]
+texture = ExtResource("1_3qlwv")
+region_rect = Rect2(48, 48, 16, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xmcvt"]
+texture = ExtResource("3_w4o8f")
+region_rect = Rect2(32, 16, 16, 16)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_oxmqg"]
+texture = ExtResource("4_tkyje")
+region_rect = Rect2(32, 16, 16, 16)
+
+[sub_resource type="Animation" id="Animation_xrtc6"]
+resource_name = "MainMenu"
+length = 8.0
+loop_mode = 1
+step = 1.0
+
+[sub_resource type="Animation" id="Animation_3tvrs"]
+length = 0.001
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5aabf"]
+_data = {
+"MainMenu": SubResource("Animation_xrtc6"),
+"RESET": SubResource("Animation_3tvrs")
+}
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -854.0
+offset_bottom = -512.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(3, 3)
+size_flags_horizontal = 3
+theme = SubResource("Theme_fux5u")
+script = ExtResource("3_n5158")
+
+[node name="Background" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Play" type="Button" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxTexture_is60u")
+theme_override_styles/hover = SubResource("StyleBoxTexture_is60u")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_6ipq0")
+theme_override_styles/normal = SubResource("StyleBoxTexture_4f421")
+
+[node name="Options" type="Button" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+theme_override_styles/hover = SubResource("StyleBoxTexture_ccv3l")
+theme_override_styles/normal = SubResource("StyleBoxTexture_msrgg")
+
+[node name="Quit" type="Button" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+theme_override_styles/hover = SubResource("StyleBoxTexture_xmcvt")
+theme_override_styles/normal = SubResource("StyleBoxTexture_oxmqg")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_5aabf")
+}
+autoplay = "MainMenu"
+
+[node name="Node" type="Node" parent="."]
+
+[node name="ParallaxBackground" parent="Node" instance=ExtResource("5_7w6p1")]
+speed = 25.0
+
+[connection signal="pressed" from="MarginContainer/HBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/Quit" to="." method="_on_quit_pressed"]

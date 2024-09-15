@@ -1,0 +1,67 @@
+[gd_scene load_steps=8 format=3 uid="uid://bv77trrthogcn"]
+
+[ext_resource type="Texture2D" uid="uid://37rrjhgj0g6j" path="res://assets/scenery/Sky Night 240x135px/Background_01_240x135px.png" id="1_dpb7s"]
+[ext_resource type="Texture2D" uid="uid://bedt0eqyy8sj7" path="res://assets/scenery/Sky Night 240x135px/Background_02_240x135px.png" id="2_ctutq"]
+[ext_resource type="Texture2D" uid="uid://7wbxqoxhgodk" path="res://assets/scenery/Sky Night 240x135px/Background_03_240x135px.png" id="3_sjopv"]
+[ext_resource type="Texture2D" uid="uid://bj3bv3k6bjqnq" path="res://assets/scenery/Sky Night 240x135px/Background_04_240x135px.png" id="4_vo2j8"]
+[ext_resource type="Texture2D" uid="uid://ck7mwrcw8ag76" path="res://assets/scenery/Sky Night 240x135px/Background_05_240x135px.png" id="5_woqof"]
+[ext_resource type="Texture2D" uid="uid://dr26uwyvlj0km" path="res://assets/scenery/Sky Night 240x135px/Background_06_240x135px.png" id="6_vdh65"]
+
+[sub_resource type="GDScript" id="GDScript_salqi"]
+script/source = "extends ParallaxBackground
+@export var speed = 40.0;
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	scroll_offset.x -= speed * delta;
+"
+
+[node name="ParallaxBackground" type="ParallaxBackground"]
+script = SubResource("GDScript_salqi")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(640, 384)
+scale = Vector2(5.33333, 5.68889)
+texture = ExtResource("1_dpb7s")
+metadata/_edit_lock_ = true
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(640, 384)
+scale = Vector2(5.33333, 5.68889)
+texture = ExtResource("2_ctutq")
+metadata/_edit_lock_ = true
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+position = Vector2(640, 384)
+scale = Vector2(5.33333, 5.68889)
+texture = ExtResource("3_sjopv")
+metadata/_edit_lock_ = true
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="."]
+motion_mirroring = Vector2(1280, 0)
+
+[node name="layer1" type="Sprite2D" parent="ParallaxLayer"]
+position = Vector2(640, 384)
+scale = Vector2(5.33333, 5.68889)
+texture = ExtResource("4_vo2j8")
+metadata/_edit_lock_ = true
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.8, 0.8)
+motion_mirroring = Vector2(1280, 0)
+
+[node name="layer2" type="Sprite2D" parent="ParallaxLayer2"]
+position = Vector2(640, 384)
+scale = Vector2(5.33333, 5.68889)
+texture = ExtResource("5_woqof")
+metadata/_edit_lock_ = true
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.5, 0.5)
+motion_mirroring = Vector2(1280, 0)
+
+[node name="layer3" type="Sprite2D" parent="ParallaxLayer3"]
+position = Vector2(640, 384)
+scale = Vector2(5.33333, 5.68889)
+texture = ExtResource("6_vdh65")
+metadata/_edit_lock_ = true
